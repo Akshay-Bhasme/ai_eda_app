@@ -93,8 +93,7 @@ def main():
             df[target]= pd.factorize(df[target])[0]
 
         
-        numeric_columns = list(df.select_dtypes(include=[np.number]).columns.values).remove(target)
-        #numeric_columns= list(df.select_dtypes('number')).remove(target)  # to numeric feature names from the dataset excluding target variable
+        numeric_columns = list(df.select_dtypes(include=[np.number]).columns.values)  # to numeric feature names from the dataset excluding target variable 
         st.write(numeric_columns)
         categorical_columns= list(df.select_dtypes('object'))  # to categorical feature names from the dataset excluding target variable
         st.write(categorical_columns)
