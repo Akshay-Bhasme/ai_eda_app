@@ -14,7 +14,7 @@ import os
 #from chart_studio import plotly
 #import plotly.offline as offline
 #import plotly.graph_objs as go
-offline.init_notebook_mode()
+#offline.init_notebook_mode()
 #import plotly.graph_objects as go
 #import plotly.express as px
 from pandas import Series
