@@ -68,9 +68,9 @@ def main():
                 elif pd.api.types.is_numeric_dtype(most_common_dtype):
                     # If the most common dtype is numeric, replace values with the mean of numeric values
                     column = column.apply(lambda x: column.mean() if not pd.api.types.is_numeric_dtype(type(x)) else x)
-                print(f"Column has multiple data types. Replaced values based on the most common data type.")
+                #print(f"Column has multiple data types. Replaced values based on the most common data type.")
             else:
-                print(f"Column has a single data type: {column.dtype}")
+                #print(f"Column has a single data type: {column.dtype}")
             # Convert values to float at the end
             try:
                 column.replace('', pd.NA).mode().iloc[0]
@@ -85,11 +85,11 @@ def main():
                 pass
             return column
         for column in df.columns:
-            print(f"Analyzing and replacing values in '{column}' column:")
+            #print(f"Analyzing and replacing values in '{column}' column:")
             df[column] = analyze_and_replace_datatypes(df[column])
-            print()
+            #print()
         if df[target].dtype=='O':
-            df[target]= pd.factorize(df[Target])[0]
+            df[target]= pd.factorize(df[target])[0]
         numeric_columns= list(df.select_dtypes('number')).remove(target)  # to numeric feature names from the dataset excluding target variable
         categorical_columns= list(df.select_dtypes('object')).remove(target)  # to categorical feature names from the dataset excluding target variable
         st.write(df.info())  
