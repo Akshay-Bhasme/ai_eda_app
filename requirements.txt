@@ -1,11 +1,9 @@
-warnings
 pandas
 numpy
-string
 matplotlib
 os
 chart_studio
 plotly
 tqdm
 streamlit
-pillow
+Pillow==8.4.0
