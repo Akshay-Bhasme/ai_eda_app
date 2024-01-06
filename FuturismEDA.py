@@ -39,9 +39,9 @@ def main():
     target = st.text_input("Name of Target KPI","Type here")
     
     if st.button("Run the analysis"):
-        data = pd.read_csv(uploaded_file)
+        df = pd.read_csv(uploaded_file)
         pd.set_option('display.max_columns', None)
-        st.dataframe(data) # to show dataframe
+        st.dataframe(df) # to show dataframe
         
         st.write('Shape of the Dataframe: ',df.shape)
         st.write('Number of columns in dataset: ',df.shape[1])
