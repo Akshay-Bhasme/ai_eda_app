@@ -16,7 +16,7 @@ import os
 #import plotly.graph_objs as go
 #offline.init_notebook_mode()
 #import plotly.graph_objects as go
-#import plotly.express as px
+import seaborn as sns
 from pandas import Series
 from matplotlib import pyplot
 from tqdm import tqdm
