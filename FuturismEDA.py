@@ -71,6 +71,7 @@ def main():
                 #print(f"Column has multiple data types. Replaced values based on the most common data type.")
             else:
                 #print(f"Column has a single data type: {column.dtype}")
+                pass
             # Convert values to float at the end
             try:
                 column.replace('', pd.NA).mode().iloc[0]
