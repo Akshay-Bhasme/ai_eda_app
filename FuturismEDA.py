@@ -108,25 +108,25 @@ def main():
         
         #univariate pdf plots for numeric variables
         for column in numeric_columns:
-            plt.figure(figsize=(8, 6))
+            fig = plt.figure(figsize=(8, 6))
             sns.histplot(df[column], kde=True)
             plt.title(f'Univariate Distribution of {column}')
             st.pyplot(fig)
         #countplot for categorical variables
         for column in categorical_columns:    
-            plt.figure(figsize=(8, 6))
-            sns.countplot(dataframe[column])
+            fig = plt.figure(figsize=(8, 6))
+            sns.countplot(df[column])
             plt.title(f'Countplot of {column}')
             st.pyplot(fig)
         #bivariate plot for numeric variable 
         for column in numeric_columns:    
-            plt.figure(figsize=(8, 6))
-            sns.scatterplot(x=column, y=target, data=dataframe)
+            fig = plt.figure(figsize=(8, 6))
+            sns.scatterplot(x=column, y=target, data=df)
             plt.title(f'Bivariate Scatter Plot: {column} vs. target')
             st.pyplot(fig)
         for column in categorical_columns:
-            plt.figure(figsize=(12, 8))
-            sns.boxplot(x=column, y=target, data=dataframe)
+            fig = plt.figure(figsize=(12, 8))
+            sns.boxplot(x=column, y=target, data=df)
             plt.title(f'Bivariate Boxplot: {column} vs. target')
             st.pyplot(fig)
         
