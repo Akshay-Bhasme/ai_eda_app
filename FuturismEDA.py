@@ -97,7 +97,7 @@ def main():
         st.write(df.describe())
         
         #correlation plot
-        df_corr= df[numeric_columns].corr()
+        df_corr= df.corr(numeric_only=True)
         fig = plt.figure(figsize=(8,8))
         sns.heatmap(df_corr,cmap='PuBuGn',annot=True)
         st.pyplot(fig)
