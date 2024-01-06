@@ -1,9 +1,6 @@
 pandas
 numpy
 matplotlib
-os
-chart_studio
-plotly
 tqdm
 streamlit
 Pillow==8.4.0
