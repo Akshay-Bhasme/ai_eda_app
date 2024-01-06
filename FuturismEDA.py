@@ -11,12 +11,12 @@ import numpy as np
 import string
 import matplotlib.pyplot as plt
 import os
-from chart_studio import plotly
-import plotly.offline as offline
-import plotly.graph_objs as go
+#from chart_studio import plotly
+#import plotly.offline as offline
+#import plotly.graph_objs as go
 offline.init_notebook_mode()
-import plotly.graph_objects as go
-import plotly.express as px
+#import plotly.graph_objects as go
+#import plotly.express as px
 from pandas import Series
 from matplotlib import pyplot
 from tqdm import tqdm
