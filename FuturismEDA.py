@@ -125,7 +125,7 @@ def main():
             plt.title(f'Bivariate Scatter Plot: {column} vs. target')
             st.pyplot(fig)
         for column in categorical_columns:
-            fig = plt.figure(figsize=(12, 8))
+            fig = plt.figure(figsize=(8, 6))
             sns.boxplot(x=column, y=target, data=df)
             plt.title(f'Bivariate Boxplot: {column} vs. target')
             st.pyplot(fig)
