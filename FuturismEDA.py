@@ -95,7 +95,7 @@ def main():
         
         numeric_columns = list(df.select_dtypes(include=[np.number]).columns.values)  # to numeric feature names from the dataset excluding target variable 
         st.write(numeric_columns)
-        categorical_columns= list(df.select_dtypes('object')).remove('customerID')  # to categorical feature names from the dataset excluding target variable
+        categorical_columns= list(df.select_dtypes('object'))  # to categorical feature names from the dataset excluding target variable
         st.write(categorical_columns)
         #st.write(df.info())  
         #st.write(df.describe())
