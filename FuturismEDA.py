@@ -91,7 +91,10 @@ def main():
             #print()
         if df[target].dtype=='O':
             df[target]= pd.factorize(df[target])[0]
-        numeric_columns= list(df.select_dtypes('number')).remove(target)  # to numeric feature names from the dataset excluding target variable
+
+        numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
+        numeric_columns = list(df.select_dtypes(include=numerics).columns).remove(target)
+        #numeric_columns= list(df.select_dtypes('number')).remove(target)  # to numeric feature names from the dataset excluding target variable
         st.write(numeric_columns)
         categorical_columns= list(df.select_dtypes('object'))  # to categorical feature names from the dataset excluding target variable
         st.write(categorical_columns)
