@@ -116,8 +116,9 @@ def main():
 
         # Countplot for categorical variables
         for i, column in enumerate(categorical_columns):
-            sns.countplot(x=column, data=df, ax=axes[i + len(numeric_columns), 0])
-            axes[i + len(numeric_columns), 0].set_title(f'Countplot of {column}')
+            if column != 'customerID':
+                sns.countplot(x=column, data=df, ax=axes[i + len(numeric_columns), 0])
+                axes[i + len(numeric_columns), 0].set_title(f'Countplot of {column}')
 
         # Bivariate scatter plot for numeric variables
         for i, column in enumerate(numeric_columns):
@@ -126,8 +127,9 @@ def main():
 
         # Bivariate boxplot for categorical variables
         for i, column in enumerate(categorical_columns):
-            sns.boxplot(x=column, y=target, data=df, ax=axes[i + len(numeric_columns), 1])
-            axes[i + len(numeric_columns), 1].set_title(f'Bivariate Boxplot: {column} vs. {target}')
+            if column != 'customerID':
+                sns.boxplot(x=column, y=target, data=df, ax=axes[i + len(numeric_columns), 1])
+                axes[i + len(numeric_columns), 1].set_title(f'Bivariate Boxplot: {column} vs. {target}')
 
         # Adjust layout
         plt.tight_layout()
