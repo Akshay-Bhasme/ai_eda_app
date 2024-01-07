@@ -135,8 +135,8 @@ def main():
         st.pyplot(fig)
         
         os.environ['OPENAI_API_KEY'] = st.secrets["OPENAI_API_KEY"]
-        agent = create_pandas_dataframe_agent(OpenAI(temperature=0), df, verbose=True)
-        openai = OpenAI(temperature=0.0)
+        agent = create_pandas_dataframe_agent(OpenAI(model="text-davinci-003",temperature=0), df, verbose=True)
+        openai = OpenAI(model="text-davinci-003",temperature=0.0)
         st.write(openai.model_name)
         user_question = st.chat_input("What do you want to know about data?")
         if user_question:
