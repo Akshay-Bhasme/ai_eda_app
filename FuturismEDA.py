@@ -139,9 +139,10 @@ def main():
         openai = OpenAI(temperature=0.0)
         st.write(openai.model_name)
         user_question = st.chat_input("What do you want to know about data?")
-        results = agent(user_question)
-        st.write(f"User Question: {user_question}")
-        st.write(f"OpenAI Response: {results}")
+        if user_question:
+            results = agent(user_question)
+            st.write(f"User Question: {user_question}")
+            st.write(f"OpenAI Response: {results}")
 
 if __name__=='__main__':
     main()
