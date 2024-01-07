@@ -5,3 +5,5 @@ tqdm
 streamlit
 Pillow==8.4.0
 seaborn
+langchain
+getpass
