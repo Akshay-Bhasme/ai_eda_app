@@ -106,25 +106,32 @@ def main():
         sns.heatmap(df_corr,cmap='PuBuGn',annot=True)
         st.pyplot(fig)
         
-        #univariate pdf plots for numeric variables
-        for column in numeric_columns:
-            fig = plt.figure(figsize=(8, 6))
-            sns.histplot(df[column], kde=True)
-            plt.title(f'Univariate Distribution of {column}')
-            st.pyplot(fig)
-        #countplot for categorical variables
-        for column in categorical_columns:
-            if column != 'customerID':
-                fig = plt.figure(figsize=(8, 6))
-                sns.countplot(df[column])
-                plt.title(f'Countplot of {column}')
-                st.pyplot(fig)
-        for column in categorical_columns:
-            if column != 'customerID':
-                fig = plt.figure(figsize=(8, 6))
-                sns.boxplot(x=column, y=target, data=df)
-                plt.title(f'Bivariate Boxplot: {column} vs. target')
-                st.pyplot(fig)
+        # Plot charts in a grid
+        fig, axes = plt.subplots(nrows=len(numeric_columns) + len(categorical_columns), ncols=2, figsize=(15, 8 * (len(numeric_columns) + len(categorical_columns))))
+
+        # Univariate pdf plots for numeric variables
+        for i, column in enumerate(numeric_columns):
+            sns.histplot(df[column], kde=True, ax=axes[i, 0])
+            axes[i, 0].set_title(f'Univariate Distribution of {column}')
+
+        # Countplot for categorical variables
+        for i, column in enumerate(categorical_columns):
+            sns.countplot(x=column, data=df, ax=axes[i + len(numeric_columns), 0])
+            axes[i + len(numeric_columns), 0].set_title(f'Countplot of {column}')
+
+        # Bivariate scatter plot for numeric variables
+        for i, column in enumerate(numeric_columns):
+            sns.scatterplot(x=column, y=target, data=df, ax=axes[i, 1])
+            axes[i, 1].set_title(f'Bivariate Scatter Plot: {column} vs. {target}')
+
+        # Bivariate boxplot for categorical variables
+        for i, column in enumerate(categorical_columns):
+            sns.boxplot(x=column, y=target, data=df, ax=axes[i + len(numeric_columns), 1])
+            axes[i + len(numeric_columns), 1].set_title(f'Bivariate Boxplot: {column} vs. {target}')
+
+        # Adjust layout
+        plt.tight_layout()
+        st.pyplot(fig)
         
         #st.write("The residual plot and waterfall for incrementality are generated and saved in 'C:/Users/akshay.bhasme/Documents/MMM_streamlit/'")
 
