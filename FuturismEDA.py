@@ -21,6 +21,13 @@ from getpass import getpass
 import langchain_experimental
 from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain.llms import OpenAI
+from streamlit.server.server import Server
+
+# Function to get or create SessionState
+def get_state():
+    session_state = SessionState.get(prompt='', response='', agent=None)
+    return session_state
+
 @st.cache(allow_output_mutation=True)
 def get_openai_agent(api_key, model, df):
     os.environ['OPENAI_API_KEY'] = api_key
@@ -140,10 +147,16 @@ def main():
         agent = get_openai_agent(api_key, model="text-davinci-003", df=df)
         #model = OpenAI(model="text-davinci-003",temperature=0.0)
         #st.write(openai.model_name)
-        user_question = st.chat_input("What do you want to know about data?")
-        if user_question:
+        session_state = get_state()
+        user_question = st.text_area("What do you want to know about data?", value=session_state.prompt)
+        #user_question = st.chat_input("What do you want to know about data?")
+        if st.button("Ask OpenAI"):
+            # Store the prompt in the session state
+            session_state.prompt = user_question
+    
             st.write(f"User Question: {user_question}")
-            st.write(f"OpenAI Response: {agent(user_question)}")
+            response = agent(user_question)
+            st.write(f"OpenAI Response: {response}")
 
 if __name__=='__main__':
     main()
