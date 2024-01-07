@@ -18,7 +18,7 @@ from tqdm import tqdm
 import streamlit as st
 from PIL import Image
 from getpass import getpass
-import langchain-experimental
+import langchain_experimental
 from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain.llms import OpenAI
 
