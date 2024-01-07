@@ -23,9 +23,13 @@ from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain.llms import OpenAI
 from streamlit.server.server import Server
 
+class SessionState:
+    def __init__(self):
+        self.prompt = ''
+
 # Function to get or create SessionState
 def get_state():
-    session_state = SessionState.get(prompt='', response='', agent=None)
+    session_state = SessionState()
     return session_state
 
 @st.cache(allow_output_mutation=True)
