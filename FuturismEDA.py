@@ -134,7 +134,7 @@ def main():
         plt.tight_layout()
         st.pyplot(fig)
         
-        os.environ['OPENAI_API_KEY'] = getpass(st.secrets("OPENAI_API_KEY"))
+        os.environ['OPENAI_API_KEY'] = getpass(st.secrets["OPENAI_API_KEY"])
         agent = create_pandas_dataframe_agent(OpenAI(temperature=0), 
                                       chd_df, 
                                       verbose=True)
