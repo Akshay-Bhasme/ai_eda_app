@@ -140,9 +140,8 @@ def main():
         st.write(openai.model_name)
         user_question = st.chat_input("What do you want to know about data?")
         if user_question:
-            results = agent(user_question)
             st.write(f"User Question: {user_question}")
-            st.write(f"OpenAI Response: {results}")
+            st.write(f"OpenAI Response: {agent(user_question)}")
 
 if __name__=='__main__':
     main()
