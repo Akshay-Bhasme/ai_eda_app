@@ -21,7 +21,10 @@ from getpass import getpass
 import langchain_experimental
 from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain.llms import OpenAI
-
+@st.cache(allow_output_mutation=True)
+def get_openai_agent(api_key, model, df):
+    os.environ['OPENAI_API_KEY'] = api_key
+    return create_pandas_dataframe_agent(OpenAI(model=model, temperature=0), df, verbose=True)
 
 def main():
     st.title("Futurism Technologies Pvt. Ltd.")
@@ -133,11 +136,10 @@ def main():
         # Adjust layout
         plt.tight_layout()
         st.pyplot(fig)
-        
-        os.environ['OPENAI_API_KEY'] = st.secrets["OPENAI_API_KEY"]
-        agent = create_pandas_dataframe_agent(OpenAI(model="text-davinci-003",temperature=0), df, verbose=True)
-        openai = OpenAI(model="text-davinci-003",temperature=0.0)
-        st.write(openai.model_name)
+        api_key = st.secrets["OPENAI_API_KEY"]
+        agent = get_openai_agent(api_key, model="text-davinci-003", df=df)
+        #model = OpenAI(model="text-davinci-003",temperature=0.0)
+        #st.write(openai.model_name)
         user_question = st.chat_input("What do you want to know about data?")
         if user_question:
             st.write(f"User Question: {user_question}")
