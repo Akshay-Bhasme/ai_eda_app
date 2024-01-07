@@ -10,3 +10,4 @@ getpass4
 langchain_experimental
 openai
 tabulate
+streamlit-delta
