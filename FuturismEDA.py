@@ -147,20 +147,20 @@ def main():
         # Adjust layout
         plt.tight_layout()
         st.pyplot(fig)
+        api_key = st.secrets["OPENAI_API_KEY"]
+        agent = get_openai_agent(api_key, model="text-davinci-003", df=df)
+        session_state = get_state()
+        user_question = st.text_area("What do you want to know about data?", value=session_state.prompt)
+        if st.button("Ask OpenAI"):
+            # Store the prompt in the session state
+            session_state.prompt = user_question
+        
+            st.write(f"User Question: {user_question}")
+            response = agent(user_question)
+            st.write(f"OpenAI Response: {response}")
         
 if __name__=='__main__':
     main()
-    api_key = st.secrets["OPENAI_API_KEY"]
-    agent = get_openai_agent(api_key, model="text-davinci-003", df=df)
-    session_state = get_state()
-    user_question = st.text_area("What do you want to know about data?", value=session_state.prompt)
-    if st.button("Ask OpenAI"):
-        # Store the prompt in the session state
-        session_state.prompt = user_question
-    
-        st.write(f"User Question: {user_question}")
-        response = agent(user_question)
-        st.write(f"OpenAI Response: {response}")
 
 
 
