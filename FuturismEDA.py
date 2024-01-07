@@ -107,30 +107,30 @@ def main():
         st.pyplot(fig)
         
         # Plot charts in a grid
-        fig, axes = plt.subplots(nrows=len(numeric_columns) + len(categorical_columns), ncols=2, figsize=(15, 8 * (len(numeric_columns) + len(categorical_columns))))
-
+        fig, axes = plt.subplots(nrows=len(numeric_columns) + len(categorical_columns), ncols=3, figsize=(15, 8 * (len(numeric_columns) + len(categorical_columns))))
+        
         # Univariate pdf plots for numeric variables
         for i, column in enumerate(numeric_columns):
             sns.histplot(df[column], kde=True, ax=axes[i, 0])
             axes[i, 0].set_title(f'Univariate Distribution of {column}')
-
+        
         # Countplot for categorical variables
         for i, column in enumerate(categorical_columns):
             if column != 'customerID':
                 sns.countplot(x=column, data=df, ax=axes[i + len(numeric_columns), 0])
                 axes[i + len(numeric_columns), 0].set_title(f'Countplot of {column}')
-
+        
         # Bivariate scatter plot for numeric variables
         for i, column in enumerate(numeric_columns):
             sns.scatterplot(x=column, y=target, data=df, ax=axes[i, 1])
             axes[i, 1].set_title(f'Bivariate Scatter Plot: {column} vs. {target}')
-
+        
         # Bivariate boxplot for categorical variables
         for i, column in enumerate(categorical_columns):
             if column != 'customerID':
-                sns.boxplot(x=column, y=target, data=df, ax=axes[i + len(numeric_columns), 1])
-                axes[i + len(numeric_columns), 1].set_title(f'Bivariate Boxplot: {column} vs. {target}')
-
+                sns.boxplot(x=column, y=target, data=df, ax=axes[i + len(numeric_columns), 2])  # Note the change here
+                axes[i + len(numeric_columns), 2].set_title(f'Bivariate Boxplot: {column} vs. {target}')
+        
         # Adjust layout
         plt.tight_layout()
         st.pyplot(fig)
