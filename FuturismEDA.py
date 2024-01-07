@@ -11,17 +11,15 @@ import numpy as np
 import string
 import matplotlib.pyplot as plt
 import os
-#from chart_studio import plotly
-#import plotly.offline as offline
-#import plotly.graph_objs as go
-#offline.init_notebook_mode()
-#import plotly.graph_objects as go
 import seaborn as sns
 from pandas import Series
 from matplotlib import pyplot
 from tqdm import tqdm
 import streamlit as st
 from PIL import Image
+from getpass import getpass
+from langchain.agents import create_pandas_dataframe_agent
+from langchain.llms import OpenAI
 
 
 def main():
@@ -94,9 +92,9 @@ def main():
 
         
         numeric_columns = list(df.select_dtypes(include=[np.number]).columns.values)  # to numeric feature names from the dataset excluding target variable 
-        st.write(numeric_columns)
+        st.write('Numeric Columns: ',numeric_columns)
         categorical_columns= list(df.select_dtypes('object'))  # to categorical feature names from the dataset excluding target variable
-        st.write(categorical_columns)
+        st.write("Categorical Columns: ",categorical_columns)
         #st.write(df.info())  
         #st.write(df.describe())
         
@@ -135,7 +133,16 @@ def main():
         plt.tight_layout()
         st.pyplot(fig)
         
-        #st.write("The residual plot and waterfall for incrementality are generated and saved in 'C:/Users/akshay.bhasme/Documents/MMM_streamlit/'")
+        os.environ['OPENAI_API_KEY'] = getpass("OpenAI Key:")
+        agent = create_pandas_dataframe_agent(OpenAI(temperature=0), 
+                                      chd_df, 
+                                      verbose=True)
+        openai = OpenAI(temperature=0.0)
+        st.write(openai.model_name)
+        user_question = st.chat_input("What do you want to know about data?")
+        results = agent(user_question)
+        st.write(f"User Question: {user_question}")
+        st.write(f"OpenAI Response: {results}")
 
 if __name__=='__main__':
     main()
