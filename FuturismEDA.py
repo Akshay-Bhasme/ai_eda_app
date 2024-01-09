@@ -154,7 +154,7 @@ def main():
 
         # Display the interactive report using st.write
         st.write("## Pandas Profiling Report")
-        st.write(profile.to_widgets())
+        st.write(profile)
 
         # code of llm based eda
         api_key = st.secrets["OPENAI_API_KEY"]
