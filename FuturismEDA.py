@@ -150,8 +150,14 @@ def main():
         
         # showing eda analysis using sweetvix library
         report = sv.analyze(df)
-        #html_report = report.to_html()
-        st.components.v1.html(report, width=800, height=600, scrolling=True)
+        # Save the report to a temporary HTML file
+        temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".html")
+        report.show_html(temp_file.name)
+
+        # Display the report on Streamlit UI using st.components
+        with open(temp_file.name, "r") as file:
+            html_report = file.read()
+        st.components.v1.html(html_report, width=800, height=600, scrolling=True)
 
         # code of llm based eda
         api_key = st.secrets["OPENAI_API_KEY"]
