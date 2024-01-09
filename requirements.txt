@@ -1,11 +1,9 @@
-upgrade pip
-upgrade Pillow
 pandas
 numpy
 matplotlib
 tqdm
 streamlit
-#Pillow==8.4.0
+Pillow==8.4.0
 seaborn
 langchain
 getpass4
