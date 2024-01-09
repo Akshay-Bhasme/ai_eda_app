@@ -21,8 +21,7 @@ from getpass import getpass
 import langchain_experimental
 from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain.llms import OpenAI
-import sweetviz as sv
-import tempfile
+from pandas_profiling import ProfileReport
 #from streamlit.server.server import Server
 
 class SessionState:
@@ -150,15 +149,11 @@ def main():
         st.pyplot(fig)
         
         # showing eda analysis using sweetvix library
-        report = sv.analyze(df)
-        # Save the report to a temporary HTML file
-        temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".html")
-        report.show_html(temp_file.name)
+        profile = ProfileReport(df, title="Pandas Profiling Report", explorative=True)
 
-        # Display the report on Streamlit UI using st.components
-        with open(temp_file.name, "r") as file:
-            html_report = file.read()
-        st.components.v1.html(html_report, width=800, height=600, scrolling=True)
+        # Display the interactive report using st.write
+        st.write("## Pandas Profiling Report")
+        st.write(profile.to_widgets())
 
         # code of llm based eda
         api_key = st.secrets["OPENAI_API_KEY"]
