@@ -21,6 +21,7 @@ from getpass import getpass
 import langchain_experimental
 from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain.llms import OpenAI
+import sweetviz as sv
 #from streamlit.server.server import Server
 
 class SessionState:
@@ -147,6 +148,12 @@ def main():
         # Adjust layout
         plt.tight_layout()
         st.pyplot(fig)
+        # showing eda analysis using sweetvix library
+        report = sv.analyze(df)
+        html_report = report.to_html()
+        st.components.v1.html(html_report, width=800, height=600, scrolling=True)
+
+        # code of llm based eda
         api_key = st.secrets["OPENAI_API_KEY"]
         agent = get_openai_agent(api_key, model="text-davinci-003", df=df)
         session_state = get_state()
