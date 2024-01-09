@@ -12,3 +12,4 @@ openai
 tabulate
 pandas-profiling
 pydantic-settings
+ydata-profiling
