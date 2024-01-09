@@ -10,5 +10,5 @@ getpass4
 langchain_experimental
 openai
 tabulate
-sweetviz
+pandas-profiling
 tempfile
