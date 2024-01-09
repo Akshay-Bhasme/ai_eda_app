@@ -10,7 +10,7 @@ getpass4
 langchain_experimental
 openai
 tabulate
-"pydantic==1.*"
+pydantic==1.10.13
 pandas-profiling
 pydantic-settings
 ydata-profiling
