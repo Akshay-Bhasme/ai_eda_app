@@ -144,14 +144,14 @@ def main():
             if column != 'customerID':
                 sns.boxplot(x=column, y=target, data=df, ax=axes[i + len(numeric_columns), 1])
                 axes[i + len(numeric_columns), 1].set_title(f'Bivariate Boxplot: {column} vs. {target}')
-        
         # Adjust layout
         plt.tight_layout()
         st.pyplot(fig)
+        
         # showing eda analysis using sweetvix library
         report = sv.analyze(df)
-        html_report = report.to_html()
-        st.components.v1.html(html_report, width=800, height=600, scrolling=True)
+        #html_report = report.to_html()
+        st.components.v1.html(report, width=800, height=600, scrolling=True)
 
         # code of llm based eda
         api_key = st.secrets["OPENAI_API_KEY"]
