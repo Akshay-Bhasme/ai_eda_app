@@ -1,5 +1,5 @@
---upgrade pip
---upgrade Pillow
+upgrade pip
+upgrade Pillow
 pandas
 numpy
 matplotlib
