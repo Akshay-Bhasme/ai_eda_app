@@ -152,9 +152,9 @@ def main():
         
         # showing eda analysis using sweetvix library
         profile = ProfileReport(df, title="EDA Report", explorative=True)
-
+        profile.to_widgets()
         # Display the interactive report using st.write
-        st_profile_report(profile)
+        #st_profile_report(profile)
 
         # code of llm based eda
         api_key = st.secrets["OPENAI_API_KEY"]
