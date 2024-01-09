@@ -11,6 +11,6 @@ langchain_experimental
 openai
 tabulate
 pandas-profiling
+streamlit-pandas-profiling
 pydantic-settings
-ydata-profiling
 ipython
