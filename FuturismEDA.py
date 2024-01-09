@@ -21,7 +21,7 @@ from getpass import getpass
 import langchain_experimental
 from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain.llms import OpenAI
-from pandas_profiling import ProfileReport
+from ydata_profiling import ProfileReport
 from pydantic_settings import BaseSettings
 #from streamlit.server.server import Server
 
