@@ -21,8 +21,9 @@ from getpass import getpass
 import langchain_experimental
 from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain.llms import OpenAI
-from ydata_profiling import ProfileReport
+from pandas_profiling import ProfileReport
 from pydantic_settings import BaseSettings
+from streamlit_pandas_profiling import st_profile_report
 #from streamlit.server.server import Server
 
 class SessionState:
@@ -150,11 +151,10 @@ def main():
         st.pyplot(fig)
         
         # showing eda analysis using sweetvix library
-        profile = ProfileReport(df, title="Pandas Profiling Report", explorative=True)
+        profile = ProfileReport(df, title="EDA Report", explorative=True)
 
         # Display the interactive report using st.write
-        st.write("## Pandas Profiling Report")
-        st.write(profile)
+        st_profile_report(profile)
 
         # code of llm based eda
         api_key = st.secrets["OPENAI_API_KEY"]
