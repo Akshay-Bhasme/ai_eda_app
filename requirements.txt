@@ -10,7 +10,8 @@ getpass4
 langchain_experimental
 openai
 tabulate
+pydantic-settings
+pydantic
 pandas-profiling
 streamlit-pandas-profiling
-pydantic-settings
 ipython
