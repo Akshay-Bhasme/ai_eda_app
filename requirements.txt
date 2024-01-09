@@ -11,3 +11,4 @@ langchain_experimental
 openai
 tabulate
 pandas-profiling
+pydantic-settings
