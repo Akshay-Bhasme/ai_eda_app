@@ -12,6 +12,6 @@ openai
 tabulate
 pydantic-settings
 pydantic
-pandas-profiling
+ydata-profiling
 streamlit-pandas-profiling
 ipython
