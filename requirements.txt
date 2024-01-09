@@ -13,3 +13,4 @@ tabulate
 pandas-profiling
 pydantic-settings
 ydata-profiling
+ipython
