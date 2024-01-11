@@ -28,9 +28,6 @@ html_temp = """
     """
 st.markdown(html_temp,unsafe_allow_html=True)
 
-if "api_key" in st.secrets:
-    genai.configure(api_key=st.secrets["api_key"])
-
 uploaded_file = st.file_uploader("Choose a CSV file")
     
 if st.button("Run the analysis"):
@@ -80,7 +77,9 @@ if st.button("Run the analysis"):
         return column
     for column in df.columns:
         df[column] = analyze_and_replace_datatypes(df[column])
-        
+
+    if "api_key" in st.secrets:
+        genai.configure(api_key=st.secrets["api_key"])
     numeric_columns = list(df.select_dtypes(include=[np.number]).columns.values)  # to numeric feature names from the dataset excluding target variable 
     st.write('Numeric Columns: ',numeric_columns)
     categorical_columns= list(df.select_dtypes('object'))  # to categorical feature names from the dataset excluding target variable
