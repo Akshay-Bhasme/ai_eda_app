@@ -91,7 +91,7 @@ if st.button("Run the analysis"):
     #fig = plt.figure(figsize=(9,9))
     fig= px.imshow(df_corr, text_auto=True)
     #sns.heatmap(df_corr,cmap="Blues",annot=True)
-    fig..write_image("chart.png")
+    fig.write_image("chart.png")
     st.image("chart.png")
     image = PIL.Image.open('chart.png')
     vision_model = genai.GenerativeModel('gemini-pro-vision')
