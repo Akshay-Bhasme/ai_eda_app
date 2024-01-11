@@ -27,8 +27,7 @@ html_temp = """
 st.markdown(html_temp,unsafe_allow_html=True)
 
 if "api_key" in st.secrets:
-    os.environ['GOOGLE_API_KEY'] = st.secrets["api_key"]
-    genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
+    genai.configure(api_key=st.secrets["api_key"])
 
 uploaded_file = st.file_uploader("Choose a CSV file")
     
