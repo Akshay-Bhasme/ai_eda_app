@@ -25,9 +25,9 @@ html_temp = """
     """
 st.markdown(html_temp,unsafe_allow_html=True)
 
-api_key = "AIzaSyCzW2eWVztQYT2bj7LDfZ4d_nTDKKjLGGo"
-os.environ['GOOGLE_API_KEY'] = api_key
-genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
+if "api_key" in st.secrets:
+    os.environ['GOOGLE_API_KEY'] = st.secrets["api_key"]
+    genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
 
 uploaded_file = st.file_uploader("Choose a CSV file")
     
@@ -95,55 +95,7 @@ if st.button("Run the analysis"):
     response = vision_model.generate_content(["What are the observations and analysis from this graph can be made?",image])
     st.write(response.text)
     
-    # Plot charts in a grid
-    fig, axes = plt.subplots(nrows=len(numeric_columns) + len(categorical_columns), ncols=2, figsize=(15, 8 * (len(numeric_columns) + len(categorical_columns))))
-        
-    # Univariate pdf plots for numeric variables
-    for i, column in enumerate(numeric_columns):
-        sns.histplot(df[column], kde=True, ax=axes[i, 0])
-        axes[i, 0].set_title(f'Univariate Distribution of {column}')
-        
-        # Countplot for categorical variables
-        for i, column in enumerate(categorical_columns):
-            if column != 'customerID':
-                sns.countplot(x=column, data=df, ax=axes[i + len(numeric_columns), 0])
-                axes[i + len(numeric_columns), 0].set_title(f'Countplot of {column}')
-        
-        # Bivariate scatter plot for numeric variables
-        for i, column in enumerate(numeric_columns):
-            sns.scatterplot(x=column, y=target, data=df, ax=axes[i, 1])
-            axes[i, 1].set_title(f'Bivariate Scatter Plot: {column} vs. {target}')
-        
-        # Bivariate boxplot for categorical variables
-        for i, column in enumerate(categorical_columns):
-            if column != 'customerID':
-                sns.boxplot(x=column, y=target, data=df, ax=axes[i + len(numeric_columns), 1])
-                axes[i + len(numeric_columns), 1].set_title(f'Bivariate Boxplot: {column} vs. {target}')
-        # Adjust layout
-        plt.tight_layout()
-        st.pyplot(fig)
-        
-        # showing eda analysis using sweetvix library
-        profile = ProfileReport(df, title="EDA Report", explorative=True)
-        profile.to_widgets()
-        # Display the interactive report using st.write
-        #st_profile_report(profile)
-
-        # code of llm based eda
-        api_key = st.secrets["OPENAI_API_KEY"]
-        agent = get_openai_agent(api_key, model="text-davinci-003", df=df)
-        session_state = get_state()
-        user_question = st.text_area("What do you want to know about data?", value=session_state.prompt)
-        if st.button("Ask OpenAI"):
-            # Store the prompt in the session state
-            session_state.prompt = user_question
-        
-            st.write(f"User Question: {user_question}")
-            response = agent(user_question)
-            st.write(f"OpenAI Response: {response}")
-        
-if __name__=='__main__':
-    main()
+    
 
 
 
