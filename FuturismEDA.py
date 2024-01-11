@@ -18,6 +18,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 import google.generativeai as genai
 import PIL.Image
 import time
+import plotly.express as px
 
 st.title("Futurism Technologies Pvt. Ltd.")
 html_temp = """
@@ -87,8 +88,9 @@ if st.button("Run the analysis"):
     df[categorical_columns] = df[categorical_columns].apply(lambda x: pd.factorize(x)[0])    
     #correlation plot
     df_corr= df.corr()
-    fig = plt.figure(figsize=(9,9))
-    sns.heatmap(df_corr,cmap="Blues",annot=True)
+    #fig = plt.figure(figsize=(9,9))
+    fig= px.imshow(df_corr, text_auto=True)
+    #sns.heatmap(df_corr,cmap="Blues",annot=True)
     fig.savefig("chart.png")
     st.image("chart.png")
     image = PIL.Image.open('chart.png')
