@@ -88,7 +88,7 @@ if st.button("Run the analysis"):
     #correlation plot
     df_corr= df.corr()
     fig = plt.figure(figsize=(9,9))
-    sns.heatmap(df_corr,cmap="Blues",fmt="d",annot=True)
+    sns.heatmap(df_corr,cmap="Blues",annot=True)
     st.pyplot(fig)
     time.sleep(3)
     fig.savefig("chart.png")
