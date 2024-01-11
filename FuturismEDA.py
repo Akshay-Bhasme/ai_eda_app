@@ -85,7 +85,7 @@ if st.button("Run the analysis"):
     st.write("Categorical Columns: ",categorical_columns)
         
     #correlation plot
-    df_corr= df.corr(numeric_only=True)
+    df_corr= df.corr()
     fig = plt.figure(figsize=(8,8))
     sns.heatmap(df_corr,cmap='PuBuGn',annot=True)
     st.write(fig)
