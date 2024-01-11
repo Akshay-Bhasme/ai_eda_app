@@ -105,10 +105,22 @@ if st.button("Run the analysis"):
         fig.savefig('univariate.png')
         st.write("Univariate plot for {}".format(column))
         st.image('univariate.png')
-        #image = PIL.Image.open('univariate.png')
-        #response = vision_model.generate_content(["What are the observations and analysis from this graph can be made? Write it in simple text format",image])
-        #st.write(response.text)
-
+        image = PIL.Image.open('univariate.png')
+        response = vision_model.generate_content(["What are the observations and analysis from this graph can be made?",image])
+        st.write(response.text)
+        
+    # Countplot for categorical variables
+    for i, column in enumerate(categorical_columns):
+        if 'ID'not in column:
+            fig = plt.figure(figsize=(8,8))
+            sns.countplot(x=column, data=df)
+            fig.savefig('countplot.png')
+            st.write("countplot for {}".format(column))
+            st.image('countplot.png')
+            image = PIL.Image.open('countplot.png')
+            response = vision_model.generate_content(["What are the observations and analysis from this graph can be made?",image])
+            st.write(response.text)
+                
 
 
 # In[ ]:
