@@ -107,7 +107,7 @@ if st.button("Run the analysis"):
         st.image('univariate.png')
         image = PIL.Image.open('univariate.png')
         response = vision_model.generate_content(["What are the observations and analysis from this graph can be made?",image])
-        st.write(response.text)
+        st.write(response)
 
 
 
