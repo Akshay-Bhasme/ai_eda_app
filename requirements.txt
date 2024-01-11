@@ -3,7 +3,8 @@ numpy
 matplotlib
 tqdm
 streamlit
-Pillow==8.4.0
+Pillow
+google-generativeai
 seaborn
 langchain
 getpass4
