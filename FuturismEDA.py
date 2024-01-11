@@ -101,9 +101,9 @@ if st.button("Run the analysis"):
     # Univariate pdf plots for numeric variables
     for i, column in enumerate(numeric_columns):
         fig = plt.figure(figsize=(8,8))
-        sns.histplot(df[column], kde=True, ax=axes[i, 0])
-        axes[i, 0].set_title(f'Univariate Distribution of {column}')
+        sns.histplot(df[column], kde=True)
         fig.savefig('univariate.png')
+        st.write("Univariate plot for {}".format(column))
         st.image('univariate.png')
         image = PIL.Image.open('univariate.png')
         response = vision_model.generate_content(["What are the observations and analysis from this graph can be made?",image])
