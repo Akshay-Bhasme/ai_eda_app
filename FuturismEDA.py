@@ -121,7 +121,7 @@ if st.button("Run the analysis"):
             st.write(response.text)
     #pair plots
     fig = plt.figure(figsize=(8,8))
-    sns.pairplot(data.loc[:,numeric_columns], size=3, palette='muted',corner=True)
+    sns.pairplot(df.loc[:,numeric_columns], size=3, palette='muted',corner=True)
     fig.savefig('pairplot.png')
     st.write("pairplot for {}".format(column))
     st.image('pairplot.png')
