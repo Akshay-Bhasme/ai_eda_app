@@ -90,7 +90,7 @@ if st.button("Run the analysis"):
     df_corr= df.corr()
     df_corr= df_corr.round(2)
     #fig = plt.figure(figsize=(9,9))
-    fig= px.imshow(df_corr, text_auto=True,color_continuous_scale = 'RdYlBu',width= 500, height=500)
+    fig= px.imshow(df_corr, text_auto=True,color_continuous_scale = 'RdYlBu',width= 1000, height=1000)
     #sns.heatmap(df_corr,cmap="Blues",annot=True)
     fig.write_image("chart.png")
     st.image("chart.png")
