@@ -75,6 +75,7 @@ if st.button("Run the analysis"):
                 print('Changed to float')
         except:
             pass
+        if column
         return column
     for column in df.columns:
         df[column] = analyze_and_replace_datatypes(df[column])
@@ -83,10 +84,10 @@ if st.button("Run the analysis"):
     st.write('Numeric Columns: ',numeric_columns)
     categorical_columns= list(df.select_dtypes('object'))  # to categorical feature names from the dataset excluding target variable
     st.write("Categorical Columns: ",categorical_columns)
-        
+    df[categorical_columns] = df[categorical_columns].apply(lambda x: pd.factorize(x)[0])    
     #correlation plot
     df_corr= df.corr()
-    fig = plt.figure(figsize=(8,8))
+    fig = plt.figure(figsize=(6,6))
     sns.heatmap(df_corr,cmap='PuBuGn',annot=True)
     st.write(fig)
     fig.savefig("chart.png")
