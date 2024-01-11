@@ -86,7 +86,7 @@ if st.button("Run the analysis"):
     df[categorical_columns] = df[categorical_columns].apply(lambda x: pd.factorize(x)[0])    
     #correlation plot
     df_corr= df.corr()
-    fig = plt.figure(figsize=(6,6))
+    fig = plt.figure(figsize=(9,9))
     sns.heatmap(df_corr,cmap='PuBuGn',annot=True)
     st.write(fig)
     fig.savefig("chart.png")
