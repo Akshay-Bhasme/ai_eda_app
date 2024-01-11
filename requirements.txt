@@ -18,3 +18,4 @@ pydantic
 ydata-profiling
 streamlit-pandas-profiling
 ipython
+kaleido
