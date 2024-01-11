@@ -5,7 +5,7 @@ tqdm
 streamlit
 Pillow
 google-generativeai
-seaborn==0.13.0
+seaborn
 langchain
 getpass4
 langchain_experimental
