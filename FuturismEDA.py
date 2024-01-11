@@ -96,7 +96,7 @@ if st.button("Run the analysis"):
     image = PIL.Image.open('chart.png')
     vision_model = genai.GenerativeModel('gemini-pro-vision')
     response = vision_model.generate_content(["What are the observations and analysis from this graph can be made?",image])
-    st.write(response.text)
+    st.write(response.parts)
         
     # Univariate pdf plots for numeric variables
     for i, column in enumerate(numeric_columns):
