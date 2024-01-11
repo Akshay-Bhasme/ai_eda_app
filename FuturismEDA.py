@@ -106,8 +106,7 @@ if st.button("Run the analysis"):
         st.write("Univariate plot for {}".format(column))
         st.image('univariate.png')
         #image = PIL.Image.open('univariate.png')
-        #response = vision_model.generate_content(["What are the observations and analysis from this graph can be made? Write it in simple text format",image],generation_config=genai.types.GenerationConfig(
-                                  candidate_count=1))
+        #response = vision_model.generate_content(["What are the observations and analysis from this graph can be made? Write it in simple text format",image])
         #st.write(response.text)
 
 
