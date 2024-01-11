@@ -75,7 +75,6 @@ if st.button("Run the analysis"):
                 print('Changed to float')
         except:
             pass
-        if column
         return column
     for column in df.columns:
         df[column] = analyze_and_replace_datatypes(df[column])
