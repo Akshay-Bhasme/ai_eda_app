@@ -17,6 +17,7 @@ from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain_google_genai import ChatGoogleGenerativeAI
 import google.generativeai as genai
 import PIL.Image
+import time
 
 st.title("Futurism Technologies Pvt. Ltd.")
 html_temp = """
@@ -88,7 +89,8 @@ if st.button("Run the analysis"):
     df_corr= df.corr()
     fig = plt.figure(figsize=(9,9))
     sns.heatmap(df_corr,cmap="Blues",annot=True)
-    st.write(fig)
+    st.pyplot(fig)
+    time.sleep(3)
     fig.savefig("chart.png")
     image = PIL.Image.open('chart.png')
     vision_model = genai.GenerativeModel('gemini-pro-vision')
