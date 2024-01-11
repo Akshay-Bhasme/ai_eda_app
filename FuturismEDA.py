@@ -85,22 +85,29 @@ if st.button("Run the analysis"):
     st.write('Numeric Columns: ',numeric_columns)
     categorical_columns= list(df.select_dtypes('object'))  # to categorical feature names from the dataset excluding target variable
     st.write("Categorical Columns: ",categorical_columns)
-    df[categorical_columns] = df[categorical_columns].apply(lambda x: pd.factorize(x)[0])    
+    df[categorical_columns] = df[categorical_columns].apply(lambda x: pd.factorize(x)[0])
+    
     #correlation plot
     df_corr= df.corr()
     df_corr= df_corr.round(2)
-    #fig = plt.figure(figsize=(9,9))
     fig= px.imshow(df_corr, text_auto=True,color_continuous_scale = 'RdYlBu',width= 1000, height=1000)
-    #sns.heatmap(df_corr,cmap="Blues",annot=True)
     fig.write_image("chart.png")
     st.image("chart.png")
     image = PIL.Image.open('chart.png')
     vision_model = genai.GenerativeModel('gemini-pro-vision')
     response = vision_model.generate_content(["What are the observations and analysis from this graph can be made?",image])
     st.write(response.text)
-    
-    
-
+        
+    # Univariate pdf plots for numeric variables
+    for i, column in enumerate(numeric_columns):
+        fig = plt.figure(figsize=(8,8))
+        sns.histplot(df[column], kde=True, ax=axes[i, 0])
+        axes[i, 0].set_title(f'Univariate Distribution of {column}')
+        fig.savefig('univariate.png')
+        st.image('univariate.png')
+        image = PIL.Image.open('univariate.png')
+        response = vision_model.generate_content(["What are the observations and analysis from this graph can be made?",image])
+        st.write(response.text)
 
 
 
