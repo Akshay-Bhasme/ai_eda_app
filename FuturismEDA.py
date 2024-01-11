@@ -88,6 +88,7 @@ if st.button("Run the analysis"):
     df[categorical_columns] = df[categorical_columns].apply(lambda x: pd.factorize(x)[0])    
     #correlation plot
     df_corr= df.corr()
+    df_corr= df_corr.round(2)
     #fig = plt.figure(figsize=(9,9))
     fig= px.imshow(df_corr, text_auto=True,color_continuous_scale = 'RdYlBu')
     #sns.heatmap(df_corr,cmap="Blues",annot=True)
