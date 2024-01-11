@@ -95,8 +95,7 @@ if st.button("Run the analysis"):
     st.image("chart.png")
     image = PIL.Image.open('chart.png')
     vision_model = genai.GenerativeModel('gemini-pro-vision')
-    response = vision_model.generate_content(["What are the observations and analysis from this graph can be made? Write it in simple text format",image],generation_config=genai.types.GenerationConfig(
-                                  candidate_count=1))
+    response = vision_model.generate_content(["What are the observations and analysis from this graph can be made? Write it in simple text format",image])
     st.write(response.text)
         
     # Univariate pdf plots for numeric variables
@@ -106,10 +105,10 @@ if st.button("Run the analysis"):
         fig.savefig('univariate.png')
         st.write("Univariate plot for {}".format(column))
         st.image('univariate.png')
-        image = PIL.Image.open('univariate.png')
-        response = vision_model.generate_content(["What are the observations and analysis from this graph can be made? Write it in simple text format",image],generation_config=genai.types.GenerationConfig(
+        #image = PIL.Image.open('univariate.png')
+        #response = vision_model.generate_content(["What are the observations and analysis from this graph can be made? Write it in simple text format",image],generation_config=genai.types.GenerationConfig(
                                   candidate_count=1))
-        st.write(response.text)
+        #st.write(response.text)
 
 
 
