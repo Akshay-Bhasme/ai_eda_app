@@ -88,7 +88,7 @@ if st.button("Run the analysis"):
     df_corr= df.corr(numeric_only=True)
     fig = plt.figure(figsize=(8,8))
     sns.heatmap(df_corr,cmap='PuBuGn',annot=True)
-    st.pyplot(fig)
+    st.write(fig)
     fig.savefig("chart.png")
     image = PIL.Image.open('chart.png')
     vision_model = genai.GenerativeModel('gemini-pro-vision')
