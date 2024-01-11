@@ -129,8 +129,17 @@ if st.button("Run the analysis"):
     image = PIL.Image.open('pairplot.png')
     response = vision_model.generate_content(["What are the observations and analysis from this graph can be made?",image])
     st.write(response.text)
-
-    
+   
+def generate_response(df,input_text):
+    input_text= input_text.lower()
+    agent = create_pandas_dataframe_agent(ChatGoogleGenerativeAI(model="gemini-pro"), df, verbose=True)
+    result= agent(input_text)
+    return st.write(result['output'])
+with st.form('my_form'):
+    text = st.text_area('Write a prompt to analyze the uploaded data...')
+    submitted = st.form_submit_button('Submit')
+    if submitted:
+        generate_response(df,text)
 
 
 # In[ ]:
