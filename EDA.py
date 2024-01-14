@@ -20,7 +20,7 @@ import PIL.Image
 import time
 import plotly.express as px
 
-st.title("Futurism Technologies Pvt. Ltd.")
+st.title("Analyse your data here ")
 html_temp = """
     <div style="background-color:tomato;padding:10px">
     <h2 style="color:white;text-align:center;">Exploratory Data Analysis using LLM (Google Gemini)</h2>
